@@ -1,7 +1,13 @@
-'use strict';
 
-angular.module('etyssaBrowser', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router'])
+angular.module('etyssaBrowser', ['ngAnimate',
+                                 'ngCookies',
+                                 'ngTouch',
+                                 'ngSanitize',
+                                 'ngResource',
+                                 'ui.router',
+                                 'etyssa'])
   .config(function ($stateProvider, $urlRouterProvider) {
+    'use strict';
     $stateProvider
       .state('home', {
         url: '/',
@@ -12,3 +18,5 @@ angular.module('etyssaBrowser', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitiz
     $urlRouterProvider.otherwise('/');
   })
 ;
+
+// EOF
