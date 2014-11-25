@@ -23,7 +23,7 @@
     * @name etyssa
     * @description
    */
-  angular.module('etyssa', ["etyssa.config"]).factory('Services', [
+  angular.module('etyssa', ["etyssa.config"]).factory('services', [
     "$resource", "GENERAL_CONFIG", function($resource, GENERAL_CONFIG) {
       return $resource("" + GENERAL_CONFIG.API_HOST + "/rest/services/:service_name/?token=:token", {
         token: GENERAL_CONFIG.ETYSSA_API_TOKEN
@@ -37,37 +37,37 @@
         }
       });
     }
-  ]).factory('Categories', [
+  ]).factory('categories', [
     "$resource", "GENERAL_CONFIG", function($resource, GENERAL_CONFIG) {
       return $resource("" + GENERAL_CONFIG.API_HOST + "/rest/services/issy/categories?token=:token", {
         token: GENERAL_CONFIG.ETYSSA_API_TOKEN
       }, {});
     }
-  ]).factory('Search', [
+  ]).factory('search', [
     "$resource", "GENERAL_CONFIG", function($resource, GENERAL_CONFIG) {
       return $resource("" + GENERAL_CONFIG.API_HOST + "/rest/services/issy/search?cat=:cat&token=:token", {
         token: GENERAL_CONFIG.ETYSSA_API_TOKEN
       }, {});
     }
-  ]).factory('Entries', [
+  ]).factory('entries', [
     "$resource", "GENERAL_CONFIG", function($resource, GENERAL_CONFIG) {
       return $resource("" + GENERAL_CONFIG.API_HOST + "/rest/services/issy/entries/:entry_id?token=:token", {
         token: GENERAL_CONFIG.ETYSSA_API_TOKEN
       }, {});
     }
-  ]).factory('Users', [
+  ]).factory('users', [
     "$resource", "GENERAL_CONFIG", function($resource, GENERAL_CONFIG) {
       return $resource("" + GENERAL_CONFIG.API_HOST + "/rest/services/issy/users/:user_id?token=:token", {
         token: GENERAL_CONFIG.ETYSSA_API_TOKEN
       }, {});
     }
-  ]).factory('Profile', [
+  ]).factory('profile', [
     "$resource", "GENERAL_CONFIG", function($resource, GENERAL_CONFIG) {
       return $resource("" + GENERAL_CONFIG.API_HOST + "/rest/me/?token=:token", {
         token: GENERAL_CONFIG.ETYSSA_API_TOKEN
       }, {});
     }
-  ]).factory('Message', [
+  ]).factory('message', [
     "$resource", "GENERAL_CONFIG", function($resource, GENERAL_CONFIG) {
       return $resource("" + GENERAL_CONFIG.API_HOST + "/rest/messages/?token=:token", {
         token: GENERAL_CONFIG.ETYSSA_API_TOKEN
