@@ -23,7 +23,7 @@ angular.module('etyssaBrowser')
     };
   }])
   // Directive which create a column representation
-  .directive('column', ["$window", "column", function ($window, column) {
+  .directive('columnar', ["$window", "column", function ($window, column) {
     'use strict';
     var link = function($scope, element) {
       var _column    = column($scope.query);
