@@ -14,7 +14,7 @@ angular.module('etyssaDeck',
   $stateProvider
     .state('home', {
       url: '/',
-      templateUrl: 'app/deck/main.html',
+      templateUrl: 'app/main/main.html',
       controller: 'MainCtrl'
     });
 

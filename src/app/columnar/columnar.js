@@ -30,10 +30,9 @@ angular.module('etyssaDeck')
   // Directive which create a column representation
   .directive('columnar', ["$window", "column", function ($window, column) {
     'use strict';
-    var link = function($scope, element) {
-
+    var controller = function($scope) {
       $scope.loading = true;
-      $scope.column = column($scope.query);
+      $scope.column  = column($scope.query);
       $scope.title   = $scope.column.get_title();
       // detect when loading is finished
       $scope.column.entries.$promise.then(function(){
@@ -42,8 +41,8 @@ angular.module('etyssaDeck')
     };
     return {
       restrict    : 'E',
-      templateUrl : "app/deck/column.html",
-      link        : link,
+      templateUrl : "app/columnar/column.html",
+      controller  : controller,
       scope       : {
         query : "="
       }
