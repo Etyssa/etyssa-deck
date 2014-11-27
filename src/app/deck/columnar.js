@@ -1,4 +1,4 @@
-angular.module('etyssaBrowser')
+angular.module('etyssaDeck')
   // Service which return a column object
   .factory('column', ["entries", function (entries) {
     'use strict';

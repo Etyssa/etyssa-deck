@@ -3,7 +3,7 @@
 describe('controllers', function(){
   var scope;
 
-  beforeEach(module('etyssaBrowser'));
+  beforeEach(module('etyssaDeck'));
 
   beforeEach(inject(function($rootScope) {
   	scope = $rootScope.$new();

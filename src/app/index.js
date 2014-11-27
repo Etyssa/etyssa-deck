@@ -1,5 +1,5 @@
 
-angular.module('etyssaBrowser',
+angular.module('etyssaDeck',
   [ 'ngAnimate',
     'ngCookies',
     'ngTouch',

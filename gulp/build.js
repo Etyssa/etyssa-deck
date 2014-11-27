@@ -35,7 +35,7 @@ gulp.task('partials', function () {
       quotes: true
     }))
     .pipe($.ngHtml2js({
-      moduleName: 'etyssaBrowser'
+      moduleName: 'etyssaDeck'
     }))
     .pipe(gulp.dest('.tmp'))
     .pipe($.size());

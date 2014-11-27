@@ -1,4 +1,4 @@
-angular.module('etyssaBrowser')
+angular.module('etyssaDeck')
   .controller('MainCtrl',
     ["$scope",
     function ($scope) {
