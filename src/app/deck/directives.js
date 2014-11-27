@@ -4,7 +4,7 @@ angular.module('etyssaBrowser')
   .directive('fullHeight', ["$window", function ($window) {
     'use strict';
     var link = function($scope, element) {
-      var padding  = 40;
+      var padding  = 5;
       var relayout = function() {
         element.height(angular.element($window).height() - element.offset().top - padding);
       };

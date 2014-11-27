@@ -1,7 +1,7 @@
-<div class="stack__header" ng-bind-html="title">
+<div class="stack__header"><span class="stack__header__index">{{ column.index }}</span><span class="stack__header__title">{{ title }}</span>
 </div>
 <div class="stack__body" full-height>
-  <div ng-repeat="entry in entries" class="stack__entry">
+  <div ng-repeat="entry in column.entries" class="stack__entry">
     <div class="entry__date" ng-bind-html="entry.publish_since_text"></div>
     <!-- <div class="entry__category" ng-bind-html="entry.category.title"></div> -->
     <div class="entry__username" ng-bind-html="entry.creator_nickname"></div>
@@ -10,7 +10,7 @@
     <div class="entry__file"><img ng-src="{{entry.file.file_display_url}}&width=200" /></div>
     <!-- <pre>{{ entry | json }}</pre> -->
   </div>
-  <div ng-if="entries.length < 1">
+  <div ng-if="column.entries.length < 1">
     No result
   </div>
 </div>
