@@ -10,7 +10,10 @@
     <div class="entry__file"><img ng-src="{{entry.file.file_display_url}}&width=200" /></div>
     <!-- <pre>{{ entry | json }}</pre> -->
   </div>
-  <div ng-if="column.entries.length < 1">
-    No result
+  <div ng-if="loading">
+    Chargement ...
+  </div>
+  <div ng-if="column.entries.length < 1 && !loading">
+    Pas de résultats
   </div>
 </div>

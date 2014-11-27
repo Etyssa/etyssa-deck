@@ -14,7 +14,6 @@ angular.module('etyssaDeck')
       ++nb_column;
       // return a column object
       return {
-        // params    : params,
         entries   : entries.query(params),
         index     : nb_column,
         get_title : function() {
@@ -32,9 +31,14 @@ angular.module('etyssaDeck')
   .directive('columnar', ["$window", "column", function ($window, column) {
     'use strict';
     var link = function($scope, element) {
-      var _column    = column($scope.query);
-      $scope.column  = _column;
-      $scope.title   = _column.get_title();
+
+      $scope.loading = true;
+      $scope.column = column($scope.query);
+      $scope.title   = $scope.column.get_title();
+      // detect when loading is finished
+      $scope.column.entries.$promise.then(function(){
+        $scope.loading = false;
+      });
     };
     return {
       restrict    : 'E',
