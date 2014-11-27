@@ -12,6 +12,8 @@ GULP         = gulp
 BOWER        = bower
 NPM          = npm
 
+.PHONY: all test clean
+
 run:
 	$(GULP) serve
 
@@ -27,6 +29,9 @@ freeze: clean
 	$(RM) $(DIST_DIR) -r
 	$(GULP) build
 	@echo "freezed in $(DIST_DIR)"
+
+test:
+	$(GULP) protractor:dist
 
 archive: freeze
 	@cp -r $(DIST_DIR) $(PROJECT_NAME)-$(TIMESTAMP)
