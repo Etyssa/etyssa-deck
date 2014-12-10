@@ -29,15 +29,18 @@
           };
         }
       };
-
-    return function(content_type, params) {
-      // default params values
-      params       = params || {};
-      params.limit = params.limit || 50;
-      // return a column object
-      var column = columns_type[content_type](params);
-      columns.push(column);
-      return column;
+    // exposed API
+    return {
+      create : function(content_type, params) {
+        // default params values
+        params       = params || {};
+        params.limit = params.limit || 50;
+        // return a column object
+        var column = columns_type[content_type](params);
+        columns.push(column);
+        return column;
+      },
+      columns : columns
     };
   }
 
@@ -45,7 +48,7 @@
     function controller($scope) {
       $scope.loading = true;
       if (typeof($scope.columnarContentType) === "undefined") {throw "columnar directive need a columnar-content-type parameter";}
-      $scope.column  = columnFactory($scope.columnarContentType, $scope.query);
+      $scope.column  = columnFactory.create($scope.columnarContentType, $scope.query);
       $scope.title   = $scope.column.get_title();
       // detect when loading is finished
       $scope.column.entries.$promise.then(function(){
