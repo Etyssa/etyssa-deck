@@ -1,9 +1,10 @@
 angular.module('etyssaDeck')
 
   // Set the height of Deck Columns
-  .directive('fullHeight', ["$window", "$timeout", function ($window, $timeout) {
+  .directive('fullHeight', ["$window", "$timeout", "columnFactory", function ($window, $timeout, columnFactory) {
     'use strict';
     var link = function($scope, element) {
+
       var padding  = 5;
       var relayout = function() {
         $timeout(function() {

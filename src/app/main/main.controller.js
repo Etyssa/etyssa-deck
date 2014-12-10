@@ -1,37 +1,32 @@
 (function() {
   'use strict';
 
-  function MainCtrl($modal) {
+  function MainCtrl($scope, $modal, columnFactory) {
     var vm = this;
-    vm.columns = [
-      {content_type: "entries"},
-      {content_type: "inbox"},
-      {content_type: "entries", query: {to_address:"issy"}},
-      {content_type: "entries", query: {to_address:"issy", cat:"sports", tag: "tennis"}},
-      {content_type: "entries", query: {to_address:"issy", tag:"chien"}},
-      {content_type: "entries", query: {to_address:"issy", tag:"chat"}}
-    ];
 
-    vm.openNewColumn = function() {
-      var modalInstance = $modal.open({
-        templateUrl: 'app/main/modal.html',
-        controller: "ModalInstanceCtrl as modal"
-      });
-    };
+    $scope.columns = columnFactory.list;
+
+    vm.openNewColumn = $modal.open.bind(null, {
+      templateUrl: 'app/main/modal.html',
+      controller: 'NewColumnModalInstanceCtrl as modal'
+    });
+
   }
 
-  function ModalInstanceCtrl ($scope, $modalInstance) {
+  function NewColumnModalInstanceCtrl ($scope, $modalInstance, columnFactory, Categories) {
     var vm = this;
-    vm.ok = function () {
-    };
-    vm.cancel = function () {
+    // vm.form = [];
+    vm.categories = Categories.query();
+    vm.ok = function (d) {
+      columnFactory.create(vm.contentType, vm.params);
       $modalInstance.close();
     };
+    vm.cancel = $modalInstance.close;
   }
 
   angular.module('etyssaDeck')
-    .controller('MainCtrl', ['$modal',MainCtrl])
-    .controller('ModalInstanceCtrl', ['$scope', '$modalInstance', ModalInstanceCtrl]);
+    .controller('MainCtrl', ['$scope', '$modal', 'columnFactory', MainCtrl])
+    .controller('NewColumnModalInstanceCtrl', ['$scope', '$modalInstance', 'columnFactory', 'Categories', NewColumnModalInstanceCtrl]);
 
 })();
 

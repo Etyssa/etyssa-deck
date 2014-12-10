@@ -13,6 +13,7 @@
             index     : columns.length,
             get_title : function() {
               var title = "";
+              // ugly ----> filter
               if (params.to_address) { if (title !== "") { title += " | "; } title += params.to_address; }
               if (params.cat)        { if (title !== "") { title += " | "; } title += params.cat; }
               if (params.tag)        { if (title !== "") { title += " | "; } title += params.tag; }
@@ -40,16 +41,14 @@
         columns.push(column);
         return column;
       },
-      columns : columns
+      list : columns
     };
   }
 
   function columnarDirective (columnFactory) {
     function controller($scope) {
       $scope.loading = true;
-      if (typeof($scope.columnarContentType) === "undefined") {throw "columnar directive need a columnar-content-type parameter";}
-      $scope.column  = columnFactory.create($scope.columnarContentType, $scope.query);
-      $scope.title   = $scope.column.get_title();
+      $scope.title  = $scope.column.get_title();
       // detect when loading is finished
       $scope.column.entries.$promise.then(function(){
         $scope.loading = false;
@@ -58,10 +57,9 @@
     return {
       restrict    : 'E',
       templateUrl : "app/columnar/column.html",
-      controller  : controller,
+      link  : controller,
       scope       : {
-        query : "=",
-        columnarContentType : "="
+        column : "=columnarColumn"
       }
     };
   }

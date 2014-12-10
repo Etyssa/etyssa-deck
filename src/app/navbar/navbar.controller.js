@@ -2,8 +2,7 @@
   'use strict';
   
   function NavbarCtrl(columnFactory) {
-    this.columns = columnFactory.columns;
-
+    this.columns = columnFactory.list;
   }
 
 angular.module('etyssaDeck.navbar', [])

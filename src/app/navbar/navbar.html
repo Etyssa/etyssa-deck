@@ -1,5 +1,5 @@
-<div ng-controller="NavbarCtrl as navbar" class="navigation" full-height>
-  <div ng-repeat="col in navbar.columns">
+<div ng-controller="NavbarCtrl as vm" class="navigation" full-height>
+  <div ng-repeat="col in vm.columns">
     <div class="navigation__item">
       <span ng-bind="col.get_title()"></span>
     </div>

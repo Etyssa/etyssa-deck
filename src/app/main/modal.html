@@ -2,6 +2,40 @@
     <h3>Add a column</h3>
 </div>
 
+<div class="modal-body">
+    <form role="form">
+        <div class="form-group">
+            <label for="inputContentType">Type de colonne</label>
+            <div class="form-group">
+                <label class="btn btn-primary" ng-model="modal.contentType" btn-radio="'entries'">Entries</label>
+                <label class="btn btn-primary" ng-model="modal.contentType" btn-radio="'inbox'">Inbox</label>
+            </div>
+        </div>
+        <div ng-if="modal.contentType == 'entries'">
+            <div class="form-group">
+                <label for="addressInput">Adresse</label>
+                <input type="text" ng-model="modal.params.to_address" class="form-control" id="addressInput" placeholder="issy?">
+            </div>
+            <div class="form-group">
+                <label for="categoryInput">Catégorie</label>
+                <select
+                  class      = "form-control"
+                  ng-model   = "modal.params.cat"
+                  ng-options = 'cat.title as (cat.title + " (" + cat.service_count + ")") for cat in modal.categories'>
+                    <option value="">-- Choisissez une catégorie --</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tagInput">Mots clés</label>
+                <input type="text" class="form-control" ng-model="modal.params.tag" id="tagInput" placeholder="tennis, poney, partouse">
+            </div>
+        </div>
+        <div ng-if="modal.contentType == 'inbox'">
+            Une colonne inbox va être ajoutée.
+        </div>
+    </form>
+</div>
+
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="modal.ok()">OK</button>
     <button class="btn btn-warning" ng-click="modal.cancel()">Cancel</button>
