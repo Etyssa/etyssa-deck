@@ -1,6 +1,21 @@
 .board {
   background-color: rgba(66, 63, 63, 1);
-  padding: 5px;
 }
 
+.navigation {
+    x-index: 2;
+    color: white;
+    background-color: black;
+    height: 100%;
+    width: 100px;
+    position:relative;
+    margin:0;
+    padding:0;
+    float:left;
+    .navigation__item {
+        span {
+            border:1px solid black;
+        }
+    }
+}
 // EOF

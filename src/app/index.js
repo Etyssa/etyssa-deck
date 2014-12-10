@@ -1,12 +1,13 @@
 
 angular.module('etyssaDeck',
-  [ 'ngAnimate',
+  [ 'etyssaDeck.navbar',
+    'etyssa',
+    'ngAnimate',
     'ngCookies',
     'ngTouch',
     'ngSanitize',
     'ngResource',
-    'ui.router',
-    'etyssa'
+    'ui.router'
   ]
 )
 .config(function ($stateProvider, $urlRouterProvider) {
