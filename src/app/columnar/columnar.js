@@ -1,6 +1,6 @@
 angular.module('etyssaDeck')
   // Service which return a column object
-  .factory('column', ["entries", function (entries) {
+  .factory('column', ["Entries", function (entries) {
     'use strict';
 
     var nb_column = 0;
