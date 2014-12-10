@@ -16,7 +16,7 @@ angular.module('etyssaDeck',
     .state('home', {
       url: '/',
       templateUrl: 'app/main/main.html',
-      controller: 'MainCtrl'
+      controller: 'MainCtrl as main'
     });
 
   $urlRouterProvider.otherwise('/');

@@ -1,15 +1,21 @@
-angular.module('etyssaDeck')
-  .controller('MainCtrl',
-    ["$scope",
-    function ($scope) {
-      'use strict';
-      $scope.columns = [];
-      $scope.columns.push({});
-      $scope.columns.push({to_address:"issy"});
-      $scope.columns.push({to_address:"issy", cat:"sports", tag: "tennis"});
-      $scope.columns.push({to_address:"issy", tag:"chien"});
-      $scope.columns.push({to_address:"issy", tag:"chat"});
-    }]
-  );
+(function() {
+
+  function MainCtrl() {
+    'use strict';
+    var vm = this;
+    vm.columns = [
+      {content_type: "entries"},
+      {content_type: "inbox"},
+      {content_type: "entries", query: {to_address:"issy"}},
+      {content_type: "entries", query: {to_address:"issy", cat:"sports", tag: "tennis"}},
+      {content_type: "entries", query: {to_address:"issy", tag:"chien"}},
+      {content_type: "entries", query: {to_address:"issy", tag:"chat"}}
+    ];
+  }
+
+  angular.module('etyssaDeck')
+    .controller('MainCtrl', [MainCtrl]);
+
+})();
 
 // EOF

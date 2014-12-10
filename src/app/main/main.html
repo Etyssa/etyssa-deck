@@ -1,9 +1,9 @@
-<div class="">
+<div>
   <!-- <pre>{{ entries | json }}</pre> -->
-  <div class="board" ng-style="{width: columns.length * 300 + columns.length * 10 + 80}">
-    <div ng-repeat="query in columns" class="stack">
+  <div class="board" ng-style="{width: main.columns.length * 300 + main.columns.length * 10 + 80}">
+    <div ng-repeat="column in main.columns" class="stack">
 
-      <columnar query="query"></columnar>
+      <columnar columnar-content-type="column.content_type" query="column.query"></columnar>
 
     </div>
   </div>
