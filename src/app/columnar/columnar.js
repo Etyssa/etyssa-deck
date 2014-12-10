@@ -3,13 +3,14 @@
   
   function columnFactory(entries, message) {
 
-    var nb_column = 0;
+    var columns = [];
+
       // different kind of column
-      var columns = {
+      var columns_type = {
         entries: function(params) {
           return {
             entries   : entries.query(params),
-            index     : nb_column,
+            index     : columns.length,
             get_title : function() {
               var title = "";
               if (params.to_address) { if (title !== "") { title += " | "; } title += params.to_address; }
@@ -22,7 +23,7 @@
         },
         inbox: function(params) {
           return {
-            index     : nb_column,
+            index     : columns.length,
             get_title : function(){return "Inbox";},
             entries   : message.query({mailbox:"inbox"})
           };
@@ -30,13 +31,13 @@
       };
 
     return function(content_type, params) {
-      // increment nb_column
-      ++nb_column;
       // default params values
       params       = params || {};
       params.limit = params.limit || 50;
       // return a column object
-      return columns[content_type](params);
+      var column = columns_type[content_type](params);
+      columns.push(column);
+      return column;
     };
   }
 
