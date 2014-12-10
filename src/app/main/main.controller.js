@@ -1,7 +1,7 @@
 (function() {
+  'use strict';
 
   function MainCtrl() {
-    'use strict';
     var vm = this;
     vm.columns = [
       {content_type: "entries"},
@@ -13,8 +13,7 @@
     ];
   }
 
-  angular.module('etyssaDeck')
-    .controller('MainCtrl', [MainCtrl]);
+  angular.module('etyssaDeck').controller('MainCtrl', [MainCtrl]);
 
 })();
 

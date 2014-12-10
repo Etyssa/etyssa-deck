@@ -1,6 +1,12 @@
+(function() {
+  'use strict';
+  
+  function NavbarCtrl() {
+  }
+
 angular.module('etyssaDeck.navbar', [])
-  .controller('NavbarCtrl', function ($scope) {
-    'use strict';
-  });
+  .controller('NavbarCtrl', NavbarCtrl);
+
+})();
 
 // EOF
