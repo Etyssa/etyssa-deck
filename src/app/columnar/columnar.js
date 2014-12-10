@@ -40,7 +40,7 @@
     };
   }
 
-  function columnarDirective ($window, columnFactory) {
+  function columnarDirective (columnFactory) {
     function controller($scope) {
       $scope.loading = true;
       if (typeof($scope.columnarContentType) === "undefined") {throw "columnar directive need a columnar-content-type parameter";}
@@ -66,7 +66,7 @@ angular.module('etyssaDeck')
   // Service which return a column object
   .factory('columnFactory', ["Entries", "Message", columnFactory])
   // Directive which create a column representation
-  .directive('columnar', ["$window", "columnFactory", columnarDirective]);
+  .directive('columnar', ["columnFactory", columnarDirective]);
 
 })();
 

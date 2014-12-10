@@ -71,7 +71,7 @@
     }
   ]).factory('Message', [
     "$resource", "GENERAL_CONFIG", function($resource, GENERAL_CONFIG) {
-      return $resource("" + GENERAL_CONFIG.API_HOST + "/rest/message/:mailbox?token=:token", {
+      return $resource("" + GENERAL_CONFIG.API_HOST + "/rest/messages/:mailbox?token=:token", {
         mailbox: '',
         token: GENERAL_CONFIG.ETYSSA_API_TOKEN
       }, {});
