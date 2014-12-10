@@ -2,16 +2,16 @@ angular.module('etyssaDeck')
   // Service which return a column object
   .factory('column', ["entries", function (entries) {
     'use strict';
-    
+
     var nb_column = 0;
 
     return function(params) {
+      // increment nb_column
+      ++nb_column;
       // default params values
       if (params.limit === undefined) {
         params.limit = 50;
       }
-      // increment nb_column
-      ++nb_column;
       // return a column object
       return {
         entries   : entries.query(params),
