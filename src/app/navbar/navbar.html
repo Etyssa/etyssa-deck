@@ -1,24 +1,10 @@
-<!-- <nav class="navbar navbar-static-top navbar-inverse" ng-controller="NavbarCtrl">
-  <div class="navbar-header">
-    <a class="navbar-brand" href="https://github.com/Swiip/generator-gulp-angular">
-      <span class="glyphicon glyphicon-home"></span> EtyssaDeck
-    </a>
+<div ng-controller="NavbarCtrl as navbar" class="navigation" full-height>
+  <div ng-repeat="col in navbar.columns">
+    <div class="navigation__item">
+      <span ng-bind="col.get_title()"></span>
+    </div>
   </div>
-
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
-    <ul class="nav navbar-nav">
-      <li class="active"><a ng-href="#">Home</a></li>
-      <li><a ng-href="#">About</a></li>
-    </ul>
-
-    <ul class="nav navbar-nav navbar-right">
-    </ul>
+  <div class="navigation__item navigation__item--add" ng-click="main.openNewColumn()">
+    <span>Add</span>
   </div>
-</nav>
- -->
-
-<div ng-controller="NavbarCtrl" class="navigation" full-height>
-  <div class="navigation__item"><span>Home</span></div>
-  <div class="navigation__item"><span>1</span></div>
-  <div class="navigation__item"><span>2</span></div>
 </div>

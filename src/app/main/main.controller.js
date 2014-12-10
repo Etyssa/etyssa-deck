@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  function MainCtrl() {
+  function MainCtrl($modal) {
     var vm = this;
     vm.columns = [
       {content_type: "entries"},
@@ -11,9 +11,27 @@
       {content_type: "entries", query: {to_address:"issy", tag:"chien"}},
       {content_type: "entries", query: {to_address:"issy", tag:"chat"}}
     ];
+
+    vm.openNewColumn = function() {
+      var modalInstance = $modal.open({
+        templateUrl: 'app/main/modal.html',
+        controller: "ModalInstanceCtrl as modal"
+      });
+    };
   }
 
-  angular.module('etyssaDeck').controller('MainCtrl', [MainCtrl]);
+  function ModalInstanceCtrl ($scope, $modalInstance) {
+    var vm = this;
+    vm.ok = function () {
+    };
+    vm.cancel = function () {
+      $modalInstance.close();
+    };
+  }
+
+  angular.module('etyssaDeck')
+    .controller('MainCtrl', ['$modal',MainCtrl])
+    .controller('ModalInstanceCtrl', ['$scope', '$modalInstance', ModalInstanceCtrl]);
 
 })();
 

@@ -1,11 +1,13 @@
 (function() {
   'use strict';
   
-  function NavbarCtrl() {
+  function NavbarCtrl(columnFactory) {
+    this.columns = columnFactory.columns;
+
   }
 
 angular.module('etyssaDeck.navbar', [])
-  .controller('NavbarCtrl', NavbarCtrl);
+  .controller('NavbarCtrl', ['columnFactory', NavbarCtrl]);
 
 })();
 

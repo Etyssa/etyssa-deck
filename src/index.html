@@ -17,19 +17,20 @@
     <!-- build:css({.tmp,src}) styles/app.css -->
     <link rel="stylesheet" href="app/index.css">
     <link rel="stylesheet" href="app/columnar/style.css">
+    <link rel="stylesheet" href="app/navbar/style.css">
     <!-- endbuild -->
 
     <!-- build:js scripts/modernizr.js -->
     <script src="../bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
   </head>
-  <body ng-app>
+  <body ng-app ng-controller="MainCtrl as main">
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <ng-include src="'app/navbar/navbar.html'"></ng-include>
-    <div ui-view></div>
+    <ng-include src="'app/main/main.html'"></ng-include>
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
@@ -41,6 +42,8 @@
     <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="../bower_components/angular-resource/angular-resource.js"></script>
     <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="../bower_components/ui-router-extras/release/ct-ui-router-extras.js"></script>
+    <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

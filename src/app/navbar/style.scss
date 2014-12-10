@@ -1,0 +1,30 @@
+.navigation {
+    x-index: 2;
+    color: white;
+    background-color: black;
+    height: 100%;
+    width: 100px;
+    position:relative;
+    margin:0;
+    padding:0;
+    float:left;
+    .navigation__item {
+        border:1px solid rgba(116, 101, 101, 0.45);
+        background-color: transparent;
+        cursor: pointer;
+        transition-property: background-color;
+        transition-duration: .25s;
+
+        &:hover {
+            background-color: #201F1F !important;
+        }
+        span {
+            padding: 5px;
+        }
+        &.navigation__item--add {
+            background-color: #321E1E;
+            text-align: center;
+            padding: 10px 5px;
+        }
+    }
+}
