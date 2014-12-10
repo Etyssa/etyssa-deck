@@ -15,6 +15,8 @@
 
 }).call(this);
 
+
+
 (function() {
   'use strict';
 
@@ -23,7 +25,7 @@
     * @name etyssa
     * @description
    */
-  angular.module('etyssa', ["etyssa.config"]).factory('services', [
+  angular.module('etyssa', ["etyssa.config"]).factory('Services', [
     "$resource", "GENERAL_CONFIG", function($resource, GENERAL_CONFIG) {
       return $resource("" + GENERAL_CONFIG.API_HOST + "/rest/services/:service_name/?token=:token", {
         token: GENERAL_CONFIG.ETYSSA_API_TOKEN
@@ -37,37 +39,37 @@
         }
       });
     }
-  ]).factory('categories', [
+  ]).factory('Categories', [
     "$resource", "GENERAL_CONFIG", function($resource, GENERAL_CONFIG) {
-      return $resource("" + GENERAL_CONFIG.API_HOST + "/rest/services/issy/categories?token=:token", {
+      return $resource("" + GENERAL_CONFIG.API_HOST + "/rest/categories?token=:token", {
         token: GENERAL_CONFIG.ETYSSA_API_TOKEN
       }, {});
     }
-  ]).factory('search', [
+  ]).factory('Search', [
     "$resource", "GENERAL_CONFIG", function($resource, GENERAL_CONFIG) {
-      return $resource("" + GENERAL_CONFIG.API_HOST + "/rest/services/issy/search?cat=:cat&token=:token", {
+      return $resource("" + GENERAL_CONFIG.API_HOST + "/rest/search?cat=:cat&token=:token", {
         token: GENERAL_CONFIG.ETYSSA_API_TOKEN
       }, {});
     }
-  ]).factory('entries', [
+  ]).factory('Entries', [
     "$resource", "GENERAL_CONFIG", function($resource, GENERAL_CONFIG) {
-      return $resource("" + GENERAL_CONFIG.API_HOST + "/rest/services/issy/entries/:entry_id?token=:token", {
+      return $resource("" + GENERAL_CONFIG.API_HOST + "/rest/entries/:entry_id?token=:token", {
         token: GENERAL_CONFIG.ETYSSA_API_TOKEN
       }, {});
     }
-  ]).factory('users', [
+  ]).factory('Users', [
     "$resource", "GENERAL_CONFIG", function($resource, GENERAL_CONFIG) {
-      return $resource("" + GENERAL_CONFIG.API_HOST + "/rest/services/issy/users/:user_id?token=:token", {
+      return $resource("" + GENERAL_CONFIG.API_HOST + "/rest/users/:user_id?token=:token", {
         token: GENERAL_CONFIG.ETYSSA_API_TOKEN
       }, {});
     }
-  ]).factory('profile', [
+  ]).factory('Profile', [
     "$resource", "GENERAL_CONFIG", function($resource, GENERAL_CONFIG) {
       return $resource("" + GENERAL_CONFIG.API_HOST + "/rest/me/?token=:token", {
         token: GENERAL_CONFIG.ETYSSA_API_TOKEN
       }, {});
     }
-  ]).factory('message', [
+  ]).factory('Message', [
     "$resource", "GENERAL_CONFIG", function($resource, GENERAL_CONFIG) {
       return $resource("" + GENERAL_CONFIG.API_HOST + "/rest/messages/?token=:token", {
         token: GENERAL_CONFIG.ETYSSA_API_TOKEN
@@ -79,8 +81,8 @@
     "$http", "$cookies", function($http, $cookies) {
       return {
         init: function(credential) {
-          $http.defaults.headers.common.email = credential.email;
-          $http.defaults.headers.common.password = CryptoJS.SHA1(credential.password);
+          $http.defaults.headers.common['email'] = credential.email;
+          return $http.defaults.headers.common['password'] = CryptoJS.SHA1(credential.password);
         }
       };
     }
@@ -104,4 +106,4 @@
 
 }).call(this);
 
-// EOF
+//# sourceMappingURL=etyssa.js.map
