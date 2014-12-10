@@ -81,8 +81,8 @@
     "$http", "$cookies", function($http, $cookies) {
       return {
         init: function(credential) {
-          $http.defaults.headers.common['email'] = credential.email;
-          return $http.defaults.headers.common['password'] = CryptoJS.SHA1(credential.password);
+          $http.defaults.headers.common.email = credential.email;
+          $http.defaults.headers.common.password = CryptoJS.SHA1(credential.password);
         }
       };
     }
