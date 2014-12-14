@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   
-  function columnFactory(entries, message) {
+  function columnFactory(entries, message, $modal) {
 
     var columns = [];
 
@@ -44,11 +44,15 @@
       list : columns,
       delete: function(index) {
         columns.splice(index, 1);
-      }
+      },
+      askForNewColumn: $modal.open.bind(null, {
+        templateUrl: 'app/main/modal.html',
+        controller: 'NewColumnModalInstanceCtrl as modal'
+      })
     };
   }
 
-  function columnarDirective (columnFactory, $modal) {
+  function columnarDirective (columnFactory) {
     function controller($scope) {
       $scope.loading = true;
       $scope.title  = $scope.column.get_title();
@@ -56,10 +60,7 @@
         columnFactory.delete(index);
       };
       $scope.configure = function(index) {
-        // $modal.open({
-        //   templateUrl: 'app/main/modal.html',
-        //   controller: 'NewColumnModalInstanceCtrl as modal'
-        // });
+        columnFactory.configure(index);
       };
       // detect when loading is finished
       $scope.column.entries.$promise.then(function(){
@@ -78,9 +79,9 @@
 
 angular.module('etyssaDeck')
   // Service which return a column object
-  .factory('columnFactory', ["Entries", "Message", columnFactory])
+  .factory('columnFactory', ["Entries", "Message", "$modal", columnFactory])
   // Directive which create a column representation
-  .directive('columnar', ["columnFactory", "$modal", columnarDirective]);
+  .directive('columnar', ["columnFactory", columnarDirective]);
 
 })();
 

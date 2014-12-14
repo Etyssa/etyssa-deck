@@ -1,19 +1,16 @@
 (function() {
   'use strict';
 
-  function MainCtrl($scope, $modal, columnFactory) {
+  function MainCtrl($scope, columnFactory) {
     var vm = this;
-    $scope.columns = columnFactory.list;
-    vm.openNewColumn = $modal.open.bind(null, {
-      templateUrl: 'app/main/modal.html',
-      controller: 'NewColumnModalInstanceCtrl as modal'
-    });
+    vm.columns = columnFactory.list;
+    vm.askForNewColumn = columnFactory.askForNewColumn;
     // open a new modal to create a new column
-    vm.openNewColumn();
+    vm.askForNewColumn();
   }
 
   angular.module('etyssaDeck')
-    .controller('MainCtrl', ['$scope', '$modal', 'columnFactory', MainCtrl]);
+    .controller('MainCtrl', ['$scope', 'columnFactory', MainCtrl]);
 
 })();
 
