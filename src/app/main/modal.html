@@ -7,30 +7,30 @@
         <div class="form-group">
             <label for="inputContentType">Type de colonne</label>
             <div class="form-group">
-                <label class="btn btn-primary" ng-model="modal.contentType" btn-radio="'entries'">Entries</label>
-                <label class="btn btn-primary" ng-model="modal.contentType" btn-radio="'inbox'">Inbox</label>
+                <label class="btn btn-primary" ng-model="modal.column.content_type" btn-radio="'entries'">Entries</label>
+                <label class="btn btn-primary" ng-model="modal.column.content_type" btn-radio="'inbox'">Inbox</label>
             </div>
         </div>
-        <div ng-if="modal.contentType == 'entries'">
+        <div ng-if="modal.column.content_type == 'entries'">
             <div class="form-group">
                 <label for="addressInput">Adresse</label>
-                <input type="text" ng-model="modal.params.to_address" class="form-control" id="addressInput" placeholder="issy?">
+                <input type="text" ng-model="modal.column.params.to_address" class="form-control" id="addressInput" placeholder="issy?">
             </div>
             <div class="form-group">
                 <label for="categoryInput">Catégorie</label>
                 <select
                   class      = "form-control"
-                  ng-model   = "modal.params.cat"
+                  ng-model   = "modal.column.params.cat"
                   ng-options = "cat.alias as (cat.title + ' (' + cat.service_count + ')') for cat in modal.categories">
                     <option value="">-- Choisissez une catégorie --</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="tagInput">Mots clés</label>
-                <input type="text" class="form-control" ng-model="modal.params.tag" id="tagInput" placeholder="tennis, poney, partouse">
+                <input type="text" class="form-control" ng-model="modal.column.params.tag" id="tagInput" placeholder="tennis, poney, partouse">
             </div>
         </div>
-        <div ng-if="modal.contentType == 'inbox'">
+        <div ng-if="modal.column.content_type == 'inbox'">
             Une colonne inbox va être ajoutée.
         </div>
     </form>

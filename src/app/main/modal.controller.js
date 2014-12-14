@@ -1,19 +1,28 @@
 (function() {
   'use strict';
 
-  function NewColumnModalInstanceCtrl ($scope, $modalInstance, columnFactory, Categories) {
+  function NewColumnModalInstanceCtrl ($scope, $modalInstance, columnFactory, Categories, columnInstance) {
     var vm = this;
-    // vm.form = [];
+    if (typeof(columnInstance) !== "undefined") {
+      vm.column = columnInstance;
+    }
+    else {
+      vm.column = {};
+      vm.column.params = {};
+    }
     vm.categories = Categories.query();
     vm.ok = function (d) {
-      columnFactory.create(vm.contentType, vm.params);
+      if (vm.column.$$hashKey) {
+      } else {
+        columnFactory.create(vm.column);
+      }
       $modalInstance.close();
     };
     vm.cancel = $modalInstance.close;
   }
 
   angular.module('etyssaDeck')
-    .controller('NewColumnModalInstanceCtrl', ['$scope', '$modalInstance', 'columnFactory', 'Categories', NewColumnModalInstanceCtrl]);
+    .controller('NewColumnModalInstanceCtrl', ['$scope', '$modalInstance', 'columnFactory', 'Categories', 'columnInstance', NewColumnModalInstanceCtrl]);
 
 })();
 

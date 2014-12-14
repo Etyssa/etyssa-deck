@@ -7,11 +7,10 @@
 
     // different kind of column
     function create_column_object(content_type, params) {
-      return {
+      var column = {
         entries: function(params) {
           return {
             entries   : entries.query(params),
-            get_index : function() {return columns.indexOf(this);},
             get_title : function() {
               var title = "";
               // ugly ----> filter
@@ -25,33 +24,46 @@
         },
         inbox: function(params) {
           return {
-            get_index : function() {return columns.indexOf(this);},
             get_title : function() {return "Inbox";},
             entries   : message.query({mailbox:"inbox"})
           };
         }
       }[content_type](params);
+      column.content_type = content_type;
+      column.params       = params;
+      column.get_index    = function() {return columns.indexOf(this);};
+      return column;
+    }
+
+    function open_modal(index) {
+      $modal.open({
+        templateUrl: 'app/main/modal.html',
+        controller: 'NewColumnModalInstanceCtrl as modal',
+        resolve: {
+          columnInstance : function() {return columns[index];}
+        }
+      });
     }
 
     // exposed API
     return {
-      create : function(content_type, params) {
+      create : function(column) {
         // default params values
-        params       = params || {};
-        params.limit = params.limit || 50;
+        var params   = column.params || {};
+        params.limit = column.params.limit || 50;
         // return a column object
-        var column = create_column_object(content_type, params);
-        columns.push(column);
-        return column;
+        var column_instance = create_column_object(column.content_type, column.params);
+        columns.push(column_instance);
+        return column_instance;
       },
       list : columns,
       delete: function(index) {
         columns.splice(index, 1);
       },
-      askForNewColumn: $modal.open.bind(null, {
-        templateUrl: 'app/main/modal.html',
-        controller: 'NewColumnModalInstanceCtrl as modal'
-      })
+      askForNewColumn: open_modal,
+      configure: function(index) {
+        open_modal(index);
+      }
     };
   }
 
