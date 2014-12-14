@@ -3,14 +3,13 @@
 
   function MainCtrl($scope, $modal, columnFactory) {
     var vm = this;
-
     $scope.columns = columnFactory.list;
-    columnFactory.create("entries", {});
     vm.openNewColumn = $modal.open.bind(null, {
       templateUrl: 'app/main/modal.html',
       controller: 'NewColumnModalInstanceCtrl as modal'
     });
-
+    // open a new modal to create a new column
+    vm.openNewColumn();
   }
 
   angular.module('etyssaDeck')

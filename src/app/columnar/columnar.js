@@ -10,7 +10,7 @@
         entries: function(params) {
           return {
             entries   : entries.query(params),
-            index     : columns.length,
+            get_index : function() {return columns.indexOf(this);},
             get_title : function() {
               var title = "";
               // ugly ----> filter
@@ -24,8 +24,8 @@
         },
         inbox: function(params) {
           return {
-            index     : columns.length,
-            get_title : function(){return "Inbox";},
+            get_index : function() {return columns.indexOf(this);},
+            get_title : function() {return "Inbox";},
             entries   : message.query({mailbox:"inbox"})
           };
         }
@@ -41,14 +41,26 @@
         columns.push(column);
         return column;
       },
-      list : columns
+      list : columns,
+      delete: function(index) {
+        columns.splice(index, 1);
+      }
     };
   }
 
-  function columnarDirective (columnFactory) {
+  function columnarDirective (columnFactory, $modal) {
     function controller($scope) {
       $scope.loading = true;
       $scope.title  = $scope.column.get_title();
+      $scope.delete = function(index) {
+        columnFactory.delete(index);
+      };
+      $scope.configure = function(index) {
+        // $modal.open({
+        //   templateUrl: 'app/main/modal.html',
+        //   controller: 'NewColumnModalInstanceCtrl as modal'
+        // });
+      };
       // detect when loading is finished
       $scope.column.entries.$promise.then(function(){
         $scope.loading = false;
@@ -57,7 +69,7 @@
     return {
       restrict    : 'E',
       templateUrl : "app/columnar/column.html",
-      link  : controller,
+      controller  : ["$scope", controller],
       scope       : {
         column : "=columnarColumn"
       }
@@ -68,7 +80,7 @@ angular.module('etyssaDeck')
   // Service which return a column object
   .factory('columnFactory', ["Entries", "Message", columnFactory])
   // Directive which create a column representation
-  .directive('columnar', ["columnFactory", columnarDirective]);
+  .directive('columnar', ["columnFactory", "$modal", columnarDirective]);
 
 })();
 
