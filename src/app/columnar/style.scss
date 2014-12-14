@@ -15,6 +15,11 @@
     }
     .stack__header__title {
       margin-left: 10px;
+      width: 150px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
     }
   }
   .stack__body {
