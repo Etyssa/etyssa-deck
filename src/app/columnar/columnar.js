@@ -73,8 +73,7 @@
       };
       $scope.$watchCollection('column.params', function() {
       // detect when loading is finished
-        $scope.column.update_entries().$promise.then(function(data){
-          console.log(data);
+        $scope.column.update_entries().$promise.then(function(data) {
           $scope.column.entries = data;
           $scope.loading = false;
         });
@@ -93,7 +92,6 @@
   function titleFromParamsFilter() {
     return function (params) {
       var title = "";
-      // ugly ----> filter
       if (params.to_address) { if (title !== "") { title += " | "; } title += params.to_address; }
       if (params.cat)        { if (title !== "") { title += " | "; } title += params.cat; }
       if (params.tag)        { if (title !== "") { title += " | "; } title += params.tag; }
