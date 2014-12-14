@@ -5,8 +5,9 @@
 
     var columns = [];
 
-      // different kind of column
-      var columns_type = {
+    // different kind of column
+    function create_column_object(content_type, params) {
+      return {
         entries: function(params) {
           return {
             entries   : entries.query(params),
@@ -29,7 +30,9 @@
             entries   : message.query({mailbox:"inbox"})
           };
         }
-      };
+      }[content_type](params);
+    }
+
     // exposed API
     return {
       create : function(content_type, params) {
@@ -37,7 +40,7 @@
         params       = params || {};
         params.limit = params.limit || 50;
         // return a column object
-        var column = columns_type[content_type](params);
+        var column = create_column_object(content_type, params);
         columns.push(column);
         return column;
       },
