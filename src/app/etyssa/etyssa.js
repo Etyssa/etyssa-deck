@@ -1,8 +1,8 @@
 angular.module('ngEtyssa.services', [])
 .provider('etyssaApi', function ApiProvider() {
     this.$get = ['$resource', '$http', function ApiFactory($resource, $http) {
-      $http.defaults.headers.common.email = 'olivoelement';
-      $http.defaults.headers.common.password = CryptoJS.SHA1('coucou');
+      $http.defaults.headers.common.email = this.EMAIL;
+      $http.defaults.headers.common.password = this.PASSWORD;
       return {
         categories: $resource(this.API_HOST + "/rest/categories?token=:token", {token: this.TOKEN}),
         search: $resource(this.API_HOST + "/rest/search?cat=:cat&token=:token", {token: this.TOKEN}),
