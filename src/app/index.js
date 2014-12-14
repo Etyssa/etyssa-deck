@@ -10,6 +10,9 @@ angular.module('etyssaDeck',
     'ui.router',
     'ui.bootstrap'
   ]
+).run(["api", function(api) {
+    api.init({email:"olivoelement", password:"coucou"});
+}]
 );
 
 // EOF

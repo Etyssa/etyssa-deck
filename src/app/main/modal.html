@@ -4,7 +4,7 @@
 
 <div class="modal-body">
     <form role="form">
-        <div class="form-group">
+        <div class="form-group" ng-if="!modal.column.$$hashKey">
             <label for="inputContentType">Type de colonne</label>
             <div class="form-group">
                 <label class="btn btn-primary" ng-model="modal.column.content_type" btn-radio="'entries'">Entries</label>

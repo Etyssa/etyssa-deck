@@ -10,6 +10,7 @@
       var column = {
         entries: function(params) {
           return {
+            template_url : 'app/columnar/entries-column.html',
             update_entries : function() {return entries.query(params);},
             get_title : function() {
               var title = "";
@@ -24,6 +25,7 @@
         },
         inbox: function(params) {
           return {
+            template_url : 'app/columnar/inbox-column.html',
             get_title : function() {return "Inbox";},
             update_entries : function() {return message.query({mailbox:"inbox"});}
           };
@@ -88,8 +90,8 @@
     }
     return {
       restrict    : 'E',
-      templateUrl : "app/columnar/column.html",
-      controller  : ["$scope", controller],
+      templateUrl : 'app/columnar/columnar.html',
+      controller  : ['$scope', controller],
       scope       : {
         column : "=columnarColumn"
       }
