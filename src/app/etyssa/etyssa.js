@@ -25,7 +25,8 @@
     * @name etyssa
     * @description
    */
-  angular.module('etyssa', ["etyssa.config"]).factory('Services', [
+  angular.module('etyssa', ["etyssa.config"])
+  .factory('Services', [
     "$resource", "GENERAL_CONFIG", function($resource, GENERAL_CONFIG) {
       return $resource("" + GENERAL_CONFIG.API_HOST + "/rest/services/:service_name/?token=:token", {
         token: GENERAL_CONFIG.ETYSSA_API_TOKEN

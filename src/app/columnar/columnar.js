@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   
-  function columnFactory(entries, message, $modal) {
+  function columnFactory(entries, message, $modal, $filter) {
 
     var columns = [];
 
@@ -12,15 +12,7 @@
           return {
             template_url : 'app/columnar/entries-column.html',
             update_entries : function() {return entries.query(params);},
-            get_title : function() {
-              var title = "";
-              // ugly ----> filter
-              if (params.to_address) { if (title !== "") { title += " | "; } title += params.to_address; }
-              if (params.cat)        { if (title !== "") { title += " | "; } title += params.cat; }
-              if (params.tag)        { if (title !== "") { title += " | "; } title += params.tag; }
-              if (title === "")      { title = "Home"; }
-              return title;
-            }
+            get_title : function() { return $filter('colTitleFromParams')(params);}
           };
         },
         inbox: function(params) {
@@ -69,7 +61,7 @@
     };
   }
 
-  function columnarDirective (columnFactory) {
+  function columnarDirective(columnFactory) {
     function controller($scope) {
       $scope.loading = true;
       $scope.title  = $scope.column.get_title();
@@ -98,11 +90,24 @@
     };
   }
 
-angular.module('etyssaDeck')
-  // Service which return a column object
-  .factory('columnFactory', ["Entries", "Message", "$modal", columnFactory])
-  // Directive which create a column representation
-  .directive('columnar', ["columnFactory", columnarDirective]);
+  function titleFromParamsFilter() {
+    return function (params) {
+      var title = "";
+      // ugly ----> filter
+      if (params.to_address) { if (title !== "") { title += " | "; } title += params.to_address; }
+      if (params.cat)        { if (title !== "") { title += " | "; } title += params.cat; }
+      if (params.tag)        { if (title !== "") { title += " | "; } title += params.tag; }
+      if (title === "")      { title = "Home"; }
+      return title;
+    };
+  }
+
+  angular.module('etyssaDeck')
+    // Service which return a column object
+    .factory('columnFactory', ["Entries", "Message", "$modal", "$filter", columnFactory])
+    // Directive which create a column representation
+    .directive('columnar', ["columnFactory", columnarDirective])
+    .filter('colTitleFromParams', titleFromParamsFilter);
 
 })();
 
