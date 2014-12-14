@@ -2,6 +2,7 @@
 angular.module('etyssaDeck',
   [ 'etyssaDeck.navbar',
     'etyssa',
+    'ngStorage',
     'ngAnimate',
     'ngCookies',
     'ngTouch',

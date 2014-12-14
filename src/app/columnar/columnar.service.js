@@ -1,9 +1,16 @@
 (function() {
   'use strict';
   
-  function columnFactory(entries, message, $modal, $filter) {
+  function columnFactory(entries, message, $modal, $filter, $localStorage) {
+    // $localStorage.$reset();
+    var storage = $localStorage.$default({
+      columns : []
+    });
 
-    var columns = [];
+    var columns = storage.columns;
+    _.forEach(columns, function(column, i) {
+      columns[i] = create_column_object(column.content_type, column.params);
+    });
 
     // different kind of column
     function create_column_object(content_type, params) {
@@ -74,7 +81,7 @@
 
   angular.module('etyssaDeck')
     // Service which return a column object
-    .factory('columnFactory', ["Entries", "Message", "$modal", "$filter", columnFactory])
+    .factory('columnFactory', ["Entries", "Message", "$modal", "$filter", "$localStorage", columnFactory])
     .filter('colTitleFromParams', titleFromParamsFilter);
 
 })();

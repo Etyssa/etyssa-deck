@@ -6,7 +6,9 @@
     vm.columns = columnFactory.list;
     vm.askForNewColumn = columnFactory.askForNewColumn;
     // open a new modal to create a new column
-    vm.askForNewColumn();
+    if (columnFactory.list <= 0) {
+      vm.askForNewColumn();
+    }
   }
 
   angular.module('etyssaDeck')
