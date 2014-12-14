@@ -1,7 +1,7 @@
 
 <div ng-controller="NavbarCtrl as navbar" class="navigation" full-height>
   <div class="btn-group-vertical btn-group-lg" role="group" aria-label="...">
-    <button type="button" class="btn btn-warning" ng-click="main.askForNewColumn()">Add</button>
+    <button type="button" class="btn btn-warning" ng-click="main.askForNewColumn()">+</button>
     <button ng-repeat="col in navbar.columns" type="button" class="btn btn-default">{{ col.get_title() }}</button>
   </div>
 </div>

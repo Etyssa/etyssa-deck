@@ -1,14 +1,14 @@
 <div class="modal-header">
-    <h3>Add a column</h3>
+    <h3>Nouvelle colonne</h3>
 </div>
 
 <div class="modal-body">
     <form role="form">
         <div class="form-group" ng-if="!modal.column.$$hashKey">
-            <label for="inputContentType">Type de colonne</label>
+            <label for="inputContentType">Quelle contenu ?</label>
             <div class="form-group">
-                <label class="btn btn-primary" ng-model="modal.column.content_type" btn-radio="'entries'">Entries</label>
-                <label class="btn btn-primary" ng-model="modal.column.content_type" btn-radio="'inbox'">Inbox</label>
+                <label class="btn btn-primary" ng-model="modal.column.content_type" btn-radio="'entries'">Annonces</label>
+                <label class="btn btn-primary" ng-model="modal.column.content_type" btn-radio="'inbox'">Messagerie</label>
             </div>
         </div>
         <div ng-if="modal.column.content_type == 'entries'">
@@ -31,12 +31,12 @@
             </div>
         </div>
         <div ng-if="modal.column.content_type == 'inbox'">
-            Une colonne inbox va être ajoutée.
+            Une colonne messagerie va être ajoutée.
         </div>
     </form>
 </div>
 
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="modal.ok()">OK</button>
-    <button class="btn btn-warning" ng-click="modal.cancel()">Cancel</button>
+    <button class="btn btn-warning" ng-click="modal.cancel()">Annuler</button>
 </div>
