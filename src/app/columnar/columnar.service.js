@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   
-  function columnFactory(entries, message, $modal, $filter, $localStorage) {
+  function columnFactory(etyssaApi, $modal, $filter, $localStorage) {
     // $localStorage.$reset();
     var storage = $localStorage.$default({
       columns : []
@@ -23,7 +23,7 @@
               if (params.cat) {
                 category = params.cat.alias;
               }
-              return entries.query({cat: category, tag: params.tag, to_address: params.to_address});
+              return etyssaApi.entries.query({cat: category, tag: params.tag, to_address: params.to_address});
             },
             get_title : function() { return $filter('colTitleFromParams')(params);}
           };
@@ -32,7 +32,7 @@
           return {
             template_url : 'app/columnar/inbox-column.html',
             get_title : function() {return "Inbox";},
-            update_entries : function() {return message.query({mailbox:"inbox"});}
+            update_entries : function() {return etyssaApi.message.query({mailbox:"inbox"});}
           };
         }
       }[content_type](params);
@@ -87,7 +87,7 @@
 
   angular.module('etyssaDeck')
     // Service which return a column object
-    .factory('columnFactory', ["Entries", "Message", "$modal", "$filter", "$localStorage", columnFactory])
+    .factory('columnFactory', ["etyssaApi", "$modal", "$filter", "$localStorage", columnFactory])
     .filter('colTitleFromParams', titleFromParamsFilter);
 
 })();

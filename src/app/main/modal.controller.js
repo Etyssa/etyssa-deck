@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  function NewColumnModalInstanceCtrl ($scope, $modalInstance, columnFactory, Categories, columnInstance) {
+  function NewColumnModalInstanceCtrl ($scope, $modalInstance, columnFactory, etyssaApi, columnInstance) {
     var vm = this;
     if (typeof(columnInstance) !== "undefined") {
       vm.column = columnInstance;
@@ -10,7 +10,7 @@
       vm.column = {};
       vm.column.params = {};
     }
-    vm.categories = Categories.query();
+    vm.categories = etyssaApi.categories.query();
     vm.ok = function (d) {
       if (vm.column.$$hashKey) {
       } else {
@@ -22,7 +22,7 @@
   }
 
   angular.module('etyssaDeck')
-    .controller('NewColumnModalInstanceCtrl', ['$scope', '$modalInstance', 'columnFactory', 'Categories', 'columnInstance', NewColumnModalInstanceCtrl]);
+    .controller('NewColumnModalInstanceCtrl', ['$scope', '$modalInstance', 'columnFactory', 'etyssaApi', 'columnInstance', NewColumnModalInstanceCtrl]);
 
 })();
 
