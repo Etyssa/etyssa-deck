@@ -31,7 +31,7 @@
         inbox: function(params) {
           return {
             template_url : 'app/columnar/inbox-column.html',
-            get_title : function() {return "Inbox";},
+            get_title : function() {return "Messages";},
             update_entries : function() {return etyssaApi.message.query({mailbox:"inbox"});}
           };
         }
