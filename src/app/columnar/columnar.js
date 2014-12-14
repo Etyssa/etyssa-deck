@@ -90,7 +90,7 @@
     }
     return {
       restrict    : 'E',
-      templateUrl : 'app/columnar/columnar.html',
+      templateUrl : 'app/columnar/column.html',
       controller  : ['$scope', controller],
       scope       : {
         column : "=columnarColumn"
