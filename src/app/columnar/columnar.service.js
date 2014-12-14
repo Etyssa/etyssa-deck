@@ -18,7 +18,13 @@
         entries: function(params) {
           return {
             template_url : 'app/columnar/entries-column.html',
-            update_entries : function() {return entries.query(params);},
+            update_entries : function() {
+              var category;
+              if (params.cat) {
+                category = params.cat.alias;
+              }
+              return entries.query({cat: category, tag: params.tag, to_address: params.to_address});
+            },
             get_title : function() { return $filter('colTitleFromParams')(params);}
           };
         },
@@ -72,7 +78,7 @@
     return function (params) {
       var title = "";
       if (params.to_address) { if (title !== "") { title += " | "; } title += params.to_address; }
-      if (params.cat)        { if (title !== "") { title += " | "; } title += params.cat; }
+      if (params.cat)        { if (title !== "") { title += " | "; } title += params.cat.title; }
       if (params.tag)        { if (title !== "") { title += " | "; } title += params.tag; }
       if (title === "")      { title = "Home"; }
       return title;

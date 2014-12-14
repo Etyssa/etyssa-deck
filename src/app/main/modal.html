@@ -21,7 +21,7 @@
                 <select
                   class      = "form-control"
                   ng-model   = "modal.column.params.cat"
-                  ng-options = "cat.alias as (cat.title + ' (' + cat.service_count + ')') for cat in modal.categories">
+                  ng-options = "cat as (cat.title + ' (' + cat.service_count + ')') for cat in modal.categories">
                     <option value="">-- Choisissez une catégorie --</option>
                 </select>
             </div>
