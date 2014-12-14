@@ -10,7 +10,7 @@
       var column = {
         entries: function(params) {
           return {
-            entries   : entries.query(params),
+            update_entries : function() {return entries.query(params);},
             get_title : function() {
               var title = "";
               // ugly ----> filter
@@ -25,7 +25,7 @@
         inbox: function(params) {
           return {
             get_title : function() {return "Inbox";},
-            entries   : message.query({mailbox:"inbox"})
+            update_entries : function() {return message.query({mailbox:"inbox"});}
           };
         }
       }[content_type](params);
@@ -77,9 +77,13 @@
       $scope.configure = function(index) {
         columnFactory.configure(index);
       };
+      $scope.$watchCollection('column.params', function() {
       // detect when loading is finished
-      $scope.column.entries.$promise.then(function(){
-        $scope.loading = false;
+        $scope.column.update_entries().$promise.then(function(data){
+          console.log(data);
+          $scope.column.entries = data;
+          $scope.loading = false;
+        });
       });
     }
     return {
