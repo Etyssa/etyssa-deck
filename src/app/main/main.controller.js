@@ -9,10 +9,11 @@
     if (columnFactory.list <= 0) {
       vm.askForNewColumn();
     }
+
   }
 
   angular.module('etyssaDeck')
-    .controller('MainCtrl', ['$scope', 'columnFactory', MainCtrl]);
+    .controller('MainCtrl', ['$scope', 'columnFactory' , MainCtrl]);
 
 })();
 

@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   
-  function columnarDirective(columnFactory) {
+  function columnarDirective(columnFactory,messageFactory) {
     function controller($scope) {
       $scope.loading = true;
       $scope.title  = $scope.column.get_title();
@@ -10,6 +10,9 @@
       };
       $scope.configure = function(index) {
         columnFactory.configure(index);
+      };
+      $scope.contact = function(entry) {
+        messageFactory.contactAboutEntry(entry);
       };
       $scope.$watchCollection('column.params', function() {
       // detect when loading is finished
@@ -31,6 +34,6 @@
 
   angular.module('etyssaDeck')
     // Directive which create a column representation
-    .directive('columnar', ["columnFactory", columnarDirective]);
+    .directive('columnar', ["columnFactory","messageFactory", columnarDirective]);
 
 })();

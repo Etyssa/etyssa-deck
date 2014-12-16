@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   
-  function columnFactory(etyssaApi, $modal, $filter, $localStorage) {
+  function columnFactory(etyssaApi, $modal, $filter, $localStorage, messageFactory) {
     // $localStorage.$reset();
     var storage = $localStorage.$default({
       columns : []
@@ -14,7 +14,9 @@
 
     // different kind of column
     function create_column_object(content_type, params) {
-      var column = {
+      console.log("content_type:"+content_type);
+     if(content_type=="inobx")content_type="inbox"; 
+     var column = {
         entries: function(params) {
           return {
             template_url : 'app/columnar/entries-column.html',
@@ -32,13 +34,16 @@
           return {
             template_url : 'app/columnar/inbox-column.html',
             get_title : function() {return "Messages";},
-            update_entries : function() {return etyssaApi.message.query({mailbox:"inbox"});}
+            update_entries : function() { console.log('update!');
+              return etyssaApi.message.query({mailbox:"inbox",timestamp: new Date().getTime() });
+            }
           };
         }
       }[content_type](params);
       column.content_type = content_type;
       column.params       = params;
       column.get_index    = function() {return columns.indexOf(this);};
+      
       return column;
     }
 
@@ -70,6 +75,17 @@
       askForNewColumn: open_modal,
       configure: function(index) {
         open_modal(index);
+      },
+      pushMessage :  function(message) { 
+        //console.log("refresh");
+        for (var i = 0; i < columns.length ; i++) {
+            var column = columns[i];
+           // column.params["date"]= new Date().getTime();
+           if(column.content_type=="inbox"){
+             console.log("inbox");
+              column.entries.unshift(message);
+          }
+        }
       }
     };
   }
@@ -87,7 +103,7 @@
 
   angular.module('etyssaDeck')
     // Service which return a column object
-    .factory('columnFactory', ["etyssaApi", "$modal", "$filter", "$localStorage", columnFactory])
+    .factory('columnFactory', ["etyssaApi", "$modal", "$filter", "$localStorage","messageFactory" , columnFactory])
     .filter('colTitleFromParams', titleFromParamsFilter);
 
 })();

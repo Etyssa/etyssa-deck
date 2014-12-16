@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h3>{{modal.contact.user_nickname}}</h3>
+</div>
+
+<div class="modal-body">
+    <form role="form">
+            <div class="form-group">
+                <label for="addressInput">Votre message</label>
+                <input type="text" ng-model="modal.contact.body" class="form-control" id="addressInput" placeholder="Bonjour, ">
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="modal.send()">Envoyer</button>
+    <button class="btn btn-warning" ng-click="modal.cancel()">Annuler</button>
+</div>
