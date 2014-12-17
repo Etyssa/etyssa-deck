@@ -14,6 +14,16 @@
       $scope.contact = function(entry) {
         messageFactory.contactAboutEntry(entry);
       };
+      $scope.removeEntry = function(index) {
+        if($scope.column.content_type=="inbox"){
+            var entry = $scope.column.entries[index];
+            messageFactory.delete(entry);
+        }else if($scope.column.content_type=="entries"){
+
+        }
+        $scope.column.entries.splice(index, 1);
+      };
+
       $scope.$watchCollection('column.params', function() {
       // detect when loading is finished
         $scope.column.update_entries().$promise.then(function(data) {

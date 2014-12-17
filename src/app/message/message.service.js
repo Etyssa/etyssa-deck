@@ -11,32 +11,24 @@
 /*    _.forEach(contacts, function(column, i) {
       contacts[i] = create_contact_form(column.content_type, column.params);
     });*/
-
-    // different kind of column
     function create_contact_form(params) {
       var contact = params;
-      //alert("contact")
-      //contact.sender_user = params.user; 
-      //contact.get_index    = function() {return contacts.indexOf(this);};
       return contact;
     }
 
     function open_modal_entry(entry) {
-      var params={}
-      params.entryModel = entry;
-      params.entry_id   = entry.id;
-      params.subject    = entry.id;
-      params.user       = entry.creator;
-      params.receiver     = entry.creator;
-      params.user_nickname = entry.creator_nickname;
-      console.log("receiver:"+params.receiver);
-
-      open_modal(params);
+      return open_modal(entry);
     }
 
-    function open_modal(params) {
-      var contact = create_contact_form(params);
-      console.log("contact user"+contact.user_nickname);
+    function open_modal(entry) {
+      var contact_object        = {};
+      contact_object.entryModel = entry;
+      contact_object.entry_id   = entry.id;
+      contact_object.subject    = entry.id;
+      contact_object.receiver   = entry.creator;
+      contact_object.user       = entry.creator;
+      contact_object.user_nickname = entry.creator_nickname;
+      var contact = create_contact_form(contact_object);
       $modal.open({
         templateUrl: 'app/message/contact.html',
         controller: 'NewContactModalInstanceCtrl as modal',
@@ -44,6 +36,10 @@
           contactInstance : function() {return contact;}
         }
       });
+    }
+
+    function deleteMessage(messageId) {
+      etyssaApi.message.delete({message:messageId});
     }
 
     function send(message) {
@@ -55,7 +51,8 @@
     return {
       contactAboutEntry: open_modal_entry,
       contactUser: open_modal,
-      sendMessage:send
+      sendMessage:send,
+      delete:deleteMessage
     };
   }
 

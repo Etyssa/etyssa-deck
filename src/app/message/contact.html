@@ -2,6 +2,14 @@
     <h3>{{modal.contact.user_nickname}}</h3>
 </div>
 
+<h3>{{modal.contact.entry}}</h3>
+<div class="entry__date" ng-bind-html="entry.publish_since_text"></div>
+<div class="entry__username" ng-bind-html="entry.creator_nickname"></div>
+<div class="entry__title" ng-bind-html="entry.smart_title"></div>
+<div class="entry__detail" ng-bind-html="entry.detail"></div>
+<div class="entry__file"><img ng-src="{{entry.file.file_display_url}}&width=200" /></div>
+
+
 <div class="modal-body">
     <form role="form">
             <div class="form-group">

@@ -42,6 +42,7 @@
       }[content_type](params);
       column.content_type = content_type;
       column.params       = params;
+      column.archived     = params;
       column.get_index    = function() {return columns.indexOf(this);};
       
       return column;
@@ -96,7 +97,7 @@
       if (params.to_address) { if (title !== "") { title += " | "; } title += params.to_address; }
       if (params.cat)        { if (title !== "") { title += " | "; } title += params.cat.title; }
       if (params.tag)        { if (title !== "") { title += " | "; } title += params.tag; }
-      if (title === "")      { title = "Home"; }
+      if (title === "")      { title = "Accueil"; }
       return title;
     };
   }

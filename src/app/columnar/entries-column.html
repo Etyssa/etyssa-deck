@@ -3,4 +3,5 @@
 <div class="entry__title" ng-bind-html="entry.smart_title"></div>
 <div class="entry__detail" ng-bind-html="entry.detail"></div>
 <div class="entry__file"><img ng-src="{{entry.file.file_display_url}}&width=200" /></div>
-<button type="button" class="btn btn-warning" ng-click="contact(entry)">+</button>
+<button type="button" class="btn btn-warning  btn-xs" ng-click="contact(entry)">Répondre</button>
+<button type="button" class="btn btn-warning  btn-xs" ng-click="removeEntry(entry)">Supprimer</button>
