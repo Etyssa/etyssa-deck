@@ -1,25 +1,30 @@
 (function() {
   'use strict';
   
-  function columnarDirective(columnFactory,messageFactory) {
+  function columnarDirective(columnFactory,contactFactory) {
     function controller($scope) {
       $scope.loading = true;
       $scope.title  = $scope.column.get_title();
       $scope.delete = function(index) {
         columnFactory.delete(index);
       };
+
       $scope.configure = function(index) {
         columnFactory.configure(index);
       };
-      $scope.contact = function(entry) {
-        messageFactory.contactAboutEntry(entry);
-      };
-      $scope.removeEntry = function(index) {
-        if($scope.column.content_type=="inbox"){
-            var entry = $scope.column.entries[index];
-            messageFactory.delete(entry);
-        }else if($scope.column.content_type=="entries"){
 
+      $scope.contact = function(entry) {
+        // content_type and column passed to contact view
+        entry.content_type = $scope.column.content_type;
+        entry.column = $scope.column;
+        contactFactory.open_modal(entry);
+      };
+
+      $scope.remove_entry = function(index) {
+        if($scope.column.content_type=="inbox"){
+          var entry = $scope.column.entries[index];
+          contactFactory.delete(entry);
+        }else if($scope.column.content_type=="entries"){
         }
         $scope.column.entries.splice(index, 1);
       };
@@ -44,6 +49,6 @@
 
   angular.module('etyssaDeck')
     // Directive which create a column representation
-    .directive('columnar', ["columnFactory","messageFactory", columnarDirective]);
+    .directive('columnar', ["columnFactory","contactFactory", columnarDirective]);
 
 })();

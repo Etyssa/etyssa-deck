@@ -33,6 +33,7 @@
       transition-property : background-color;
       &:hover {
         background-color: rgba(251, 238, 238, 0.73);
+        cursor : pointer;
       }
       .entry__date {
         position  : absolute;
@@ -56,6 +57,13 @@
         font-size: .9em;
 
       }
+    }
+
+    .wrapper{position:relative}
+    .stack__panel{
+      position : absolute;
+      background-color : red;
+      display:none;
     }
   }
 }
