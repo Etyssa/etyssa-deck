@@ -37,6 +37,6 @@
 </div>
 
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="modal.ok()">OK</button>
+    <button class="btn btn-primary" ng-click="modal.ok()" ng-disabled="!modal.column.content_type">OK</button>
     <button class="btn btn-warning" ng-click="modal.cancel()">Annuler</button>
 </div>

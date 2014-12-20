@@ -1,11 +1,13 @@
+@import 'variables.scss';
+
 .navigation {
     x-index: 2;
     color: white;
-    background-color: #DEDEDE;
+    background-color: $darkPrimaryColor;
     height: 100%;
     width: 100px;
     position:relative;
-    margin:0;
+    margin:0 20px 0 0;
     padding:0;
     float:left;
     .btn-group-vertical {

@@ -1,6 +1,8 @@
-body {
-    background-color: rgba(66, 63, 63, 1);
-}
+@import 'variables.scss';
 
+
+body {
+    background: linear-gradient(to bottom, $primaryColor 61px, $lightPrimaryColor 0px);
+}
 
 // EOF

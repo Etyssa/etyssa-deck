@@ -47,7 +47,7 @@
 
     function open_modal(index) {
       $modal.open({
-        templateUrl: 'app/main/modal.html',
+        templateUrl: 'app/main/new-column.modal.html',
         controller: 'NewColumnModalInstanceCtrl as modal',
         resolve: {
           columnInstance : function() {return columns[index];}

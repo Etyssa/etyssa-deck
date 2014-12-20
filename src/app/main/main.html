@@ -1,6 +1,6 @@
 <div>
   <!-- <pre>{{ entries | json }}</pre> -->
-  <div class="board" ng-style="{width: main.columns.length * 300 + main.columns.length * 10 + 100}">
+  <div class="board" ng-style="{width: (main.columns.length * 300) + (main.columns.length * 40) + 120}">
     <div ng-repeat="column in main.columns" class="stack">
 
       <columnar columnar-column="column"></columnar>
