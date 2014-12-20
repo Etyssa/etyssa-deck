@@ -8,6 +8,7 @@
   vertical-align   : top;
   width            : 400px;
   margin-right     : 40px;
+  &.active {}
   .stack__header {
     font-size        : 1.3em;
     line-height: inherit;

@@ -1,15 +1,12 @@
 @import 'variables.scss';
 
 .navigation {
-    x-index: 2;
+    z-index: $zindex-navbar;
     color: white;
     background-color: $darkPrimaryColor;
     height: 100%;
-    width: 100px;
-    position:relative;
-    margin:0 20px 0 0;
-    padding:0;
-    float:left;
+    max-width: 200px;
+    position:fixed;
     .btn-group-vertical {
         width: 100%;
     }

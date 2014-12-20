@@ -1,7 +1,7 @@
 <div>
   <!-- <pre>{{ entries | json }}</pre> -->
   <div class="board" ng-style="{width: (main.columns.length * 400) + (main.columns.length * 40) + 120}">
-    <div ng-repeat="column in main.columns" class="stack">
+    <div ng-repeat="column in main.columns" class="stack" ng-class="{active: main.selectedColumn === column}" scroll-if="main.selectedColumn == column">
 
       <columnar columnar-column="column"></columnar>
 
