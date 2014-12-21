@@ -1,7 +1,15 @@
 
-<div ng-controller="NavbarCtrl as navbar" class="navigation" full-height>
+<div class="navigation" full-height>
   <div class="btn-group-vertical btn-group-lg" role="group" aria-label="...">
-    <button ng-repeat="col in navbar.columns" type="button" class="btn btn-default" ng-click="main.selectedColumn = col">{{ col.get_title() }}</button>
+    <div ng-repeat="col in main.columns" class="btn-group" dropdown is-open="status.isopen">
+      <button type="button" class="btn btn-primary dropdown-toggle" ng-click="main.selectedColumn = col" dropdown-toggle ng-disabled="disabled">
+        {{ col.get_index() + 1 }}
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#" ng-click="main.delete(col.get_index())">Supprimer</a></li>
+        <li><a href="#" ng-click="main.configure(col.get_index())">Paramètres</a></li>
+      </ul>
+    </div>
   </div>
 </div>
 <div class="navigation-right">

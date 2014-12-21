@@ -11,6 +11,9 @@
       vm.askForNewColumn();
     }
 
+    vm.delete = columnFactory.delete;
+    vm.configure = columnFactory.configure;
+
   }
 
   angular.module('etyssaDeck')

@@ -7,18 +7,18 @@
     height: 100%;
     max-width: 200px;
     position:fixed;
+    .dropdown-menu {
+        left: 33px;
+        margin: -34px 0 0;
+    }
     .btn-group-vertical {
         width: 100%;
-    }
-    button {
-        white-space: normal;
     }
 }
 
 
 
 .navigation-right {
-
     position:fixed;
     right: 20px;
     bottom: 20px;

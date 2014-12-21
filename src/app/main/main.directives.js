@@ -6,7 +6,7 @@ angular.module('etyssaDeck')
     function link($scope, element) {
       $scope.$watch('scrollIf', function() {
         if ($scope.scrollIf) {
-          window.scrollTo(element[0].offsetLeft - 220, 0);
+          window.scrollTo(element[0].offsetLeft - 70, 0);
         }
       });
     }

@@ -5,13 +5,8 @@
     function controller($scope) {
       $scope.loading = true;
       $scope.title  = $scope.column.get_title();
-      $scope.delete = function(index) {
-        columnFactory.delete(index);
-      };
-
-      $scope.configure = function(index) {
-        columnFactory.configure(index);
-      };
+      $scope.delete = columnFactory.delete;
+      $scope.configure = columnFactory.configure;
 
       $scope.contact = function(entry) {
         // content_type and column passed to contact view
