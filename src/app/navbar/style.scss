@@ -22,6 +22,7 @@
     position:fixed;
     right: 20px;
     bottom: 20px;
+    z-index: $zindex-navbar;
     .btn-circle {
         margin-bottom: 5px;
         width: 30px;
