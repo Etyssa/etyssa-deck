@@ -1,7 +1,17 @@
 
 <div ng-controller="NavbarCtrl as navbar" class="navigation" full-height>
   <div class="btn-group-vertical btn-group-lg" role="group" aria-label="...">
-    <button type="button" class="btn btn-warning" ng-click="main.askForNewColumn()">+</button>
     <button ng-repeat="col in navbar.columns" type="button" class="btn btn-default" ng-click="main.selectedColumn = col">{{ col.get_title() }}</button>
   </div>
+</div>
+<div class="navigation-right">
+
+    <!-- <button type="button" class="btn btn-default btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button> -->
+    <!-- <button type="button" class="btn btn-primary btn-circle btn-lg"><i class="glyphicon glyphicon-list"></i></button> -->
+    <!-- <button type="button" class="btn btn-success btn-circle btn-lg"><i class="glyphicon glyphicon-link"></i></button> -->
+    <!-- <button type="button" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button> -->
+    <!-- <button type="button" class="btn btn-warning btn-circle btn-lg"><i class="glyphicon glyphicon-remove"></i></button> -->
+    <!-- <button type="button" class="btn btn-danger btn-circle btn-lg"><i class="glyphicon glyphicon-heart"></i></button> -->
+    <button type="button" class="btn btn-danger btn-circle btn-lg" ng-click="main.askForNewColumn()">+</button>
+
 </div>
