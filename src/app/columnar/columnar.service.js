@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   
-  function columnFactory(etyssaApi, $modal, $filter, $localStorage) {
+  function columnFactory(etyssaApi, $modal, $filter, $localStorage, contactFactory) {
     // $localStorage.$reset();
     var storage = $localStorage.$default({
       columns : []
@@ -14,7 +14,8 @@
 
     // different kind of column
     function create_column_object(content_type, params) {
-      var column = {
+     if(content_type=="inobx")content_type="inbox"; 
+     var column = {
         entries: function(params) {
           return {
             template_url : 'app/columnar/entries-column.html',
@@ -32,7 +33,9 @@
           return {
             template_url : 'app/columnar/inbox-column.html',
             get_title : function() {return "Messages";},
-            update_entries : function() {return etyssaApi.message.query({mailbox:"inbox"});}
+            update_entries : function() {
+              return etyssaApi.message.query({mailbox:"inbox",timestamp: new Date().getTime() });
+            }
           };
         }
       }[content_type](params);
@@ -44,7 +47,7 @@
 
     function open_modal(index) {
       $modal.open({
-        templateUrl: 'app/main/modal.html',
+        templateUrl: 'app/main/new-column.modal.html',
         controller: 'NewColumnModalInstanceCtrl as modal',
         resolve: {
           columnInstance : function() {return columns[index];}
@@ -70,6 +73,14 @@
       askForNewColumn: open_modal,
       configure: function(index) {
         open_modal(index);
+      },
+      pushMessage :  function(message) { 
+        for (var i = 0; i < columns.length ; i++) {
+          var column = columns[i];
+          if(column.content_type=="inbox"){
+            column.entries.unshift(message);
+          }
+        }
       }
     };
   }
@@ -80,14 +91,14 @@
       if (params.to_address) { if (title !== "") { title += " | "; } title += params.to_address; }
       if (params.cat)        { if (title !== "") { title += " | "; } title += params.cat.title; }
       if (params.tag)        { if (title !== "") { title += " | "; } title += params.tag; }
-      if (title === "")      { title = "Home"; }
+      if (title === "")      { title = "Accueil"; }
       return title;
     };
   }
 
   angular.module('etyssaDeck')
     // Service which return a column object
-    .factory('columnFactory', ["etyssaApi", "$modal", "$filter", "$localStorage", columnFactory])
+    .factory('columnFactory', ["etyssaApi", "$modal", "$filter", "$localStorage","contactFactory" , columnFactory])
     .filter('colTitleFromParams', titleFromParamsFilter);
 
 })();

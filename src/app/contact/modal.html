@@ -1,0 +1,33 @@
+<div class="modal-header">
+   
+ 
+  <div class="row">
+    <div class="col-md-3">      
+        <img class="avatar left" ng-if="contact.user.email_hash" 
+            ng-src="http://www.gravatar.com/avatar/{{contact.user.email_hash}}?d=retro"/>
+    </div>
+    <div class="col-md8">{{contact.user.nickname}}
+         A propos de : {{ contact.subject }}
+        <h3>{{contact.subject.category.title}}</h3>
+        <div class="entry__file"><img ng-src="{{contact.entry.file.file_display_url}}&width=200" /></div>
+    </div>
+     <a nbClick="next()"></a>
+  </div>
+</div>
+
+<div class="modal-body">
+    <div class="entry__messages" ng-bind-html="contact.entry.messages"></div>
+
+    <form role="form">
+            <div class="form-group">
+                <label for="addressInput">Votre message</label>
+                <input type="text" ng-model="contact.body" class="form-control" id="addressInput" placeholder="Bonjour, ">
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="contact.send()">Envoyer</button>
+    <button class="btn btn-warning" ng-click="contact.cancel()">Annuler</button>
+</div>

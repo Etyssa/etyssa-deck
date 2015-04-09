@@ -1,7 +1,6 @@
 
 angular.module('etyssaDeck',
-  [ 'etyssaDeck.navbar',
-    'ngEtyssa.services',
+  [ 'ngEtyssa.services',
     'ngStorage',
     'ngAnimate',
     'ngCookies',

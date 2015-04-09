@@ -1,7 +1,25 @@
 
-<div ng-controller="NavbarCtrl as navbar" class="navigation" full-height>
+<div class="navigation" full-height>
   <div class="btn-group-vertical btn-group-lg" role="group" aria-label="...">
-    <button type="button" class="btn btn-warning" ng-click="main.askForNewColumn()">+</button>
-    <button ng-repeat="col in navbar.columns" type="button" class="btn btn-default">{{ col.get_title() }}</button>
+    <div ng-repeat="col in main.columns" class="btn-group" dropdown is-open="status.isopen">
+      <button type="button" class="btn btn-primary dropdown-toggle" ng-click="main.selectedColumn = col" dropdown-toggle ng-disabled="disabled">
+        {{ col.get_index() + 1 }}
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#" ng-click="main.delete(col.get_index())">Supprimer</a></li>
+        <li><a href="#" ng-click="main.configure(col.get_index())">Paramètres</a></li>
+      </ul>
+    </div>
   </div>
+</div>
+<div class="navigation-right">
+
+    <!-- <button type="button" class="btn btn-default btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button> -->
+    <!-- <button type="button" class="btn btn-primary btn-circle btn-lg"><i class="glyphicon glyphicon-list"></i></button> -->
+    <!-- <button type="button" class="btn btn-success btn-circle btn-lg"><i class="glyphicon glyphicon-link"></i></button> -->
+    <!-- <button type="button" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-ok"></i></button> -->
+    <!-- <button type="button" class="btn btn-warning btn-circle btn-lg"><i class="glyphicon glyphicon-remove"></i></button> -->
+    <!-- <button type="button" class="btn btn-danger btn-circle btn-lg"><i class="glyphicon glyphicon-heart"></i></button> -->
+    <button type="button" class="btn btn-danger btn-circle btn-lg" ng-click="main.askForNewColumn()">+</button>
+
 </div>

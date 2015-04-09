@@ -1,27 +1,29 @@
-<div class="stack__header">
-  <span class="stack__header__index" ng-bind="column.get_index() + 1"></span>
-  <div class="stack__header__title">{{ column.get_title() }}</div>
+<div class="stack__wrapper">
+  <div class="stack__header">
+    <!-- <span class="stack__header__index" ng-bind="column.get_index() + 1"></span> -->
+    <div class="btn-group" dropdown is-open="status.isopen">
+      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+        {{ column.get_index() + 1 }}
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#" ng-click="delete(column.get_index())">Supprimer</a></li>
+        <li><a href="#" ng-click="configure(column.get_index())">Paramètres</a></li>
+      </ul>
+    </div>
+    <div class="stack__header__title">{{ column.get_title() }}</div>
 
-  <div class="btn-group pull-right" dropdown is-open="status.isopen">
-    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-      <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu">
-      <li><a href="#" ng-click="delete(column.get_index())">Supprimer</a></li>
-      <li><a href="#" ng-click="configure(column.get_index())">Paramètres</a></li>
-    </ul>
-  </div>
 
-</div>
-<div class="stack__body" full-height>
-  <div ng-repeat="entry in column.entries" class="stack__entry">
-    <div ng-include="column.template_url"></div>
-    <!-- <pre>{{ entry | json }}</pre> -->
   </div>
-  <div ng-if="loading">
-    Chargement ...
-  </div>
-  <div ng-if="column.entries.length < 1 && !loading">
-    Pas de résultats
+  <div class="stack__body" full-height>
+    <div ng-repeat="entry in column.entries" class="stack__entry">
+      <div ng-include="column.template_url" ng-click="contact(entry)"></div>
+      <!-- <pre>{{ entry | json }}</pre> -->
+    </div>
+    <div ng-if="loading">
+      Chargement ...
+    </div>
+    <div ng-if="column.entries.length < 1 && !loading">
+      Pas de résultats
+    </div>
   </div>
 </div>
